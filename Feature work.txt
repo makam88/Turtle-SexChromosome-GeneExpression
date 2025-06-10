@@ -1,0 +1,23 @@
+
+---
+
+🤔 Future Work
+
+- Add statistical tests (t-test, Wilcoxon)
+- Differential expression (DESeq2)
+- Functional enrichment (GO/KEGG)
+- Heatmaps for selected genes
+
+---
+
+ 👤 Author
+
+- Name: MAKAM Islam
+- Affiliation: HSTU
+- Email: mdmakamislam@gmail.com
+---
+
+ 📜 License
+
+MIT License
+

@@ -1,0 +1,50 @@
+ 🐢 Turtle Sex Chromosome Gene Expression Analysis
+
+This is a small RNA-seq analysis project focusing on **sex chromosome (Z-linked)** vs **autosomal** gene expression differences between **male and female turtles**, using public data from the NCBI GEO database.
+
+---
+
+ 🔍 Objective
+
+To test whether **dosage compensation** exists in turtles by comparing expression levels of Z-linked genes in males (ZZ) and females (ZW).
+
+---
+
+ 📊 Data Used
+
+- **GEO Accession:** GSE183769
+- **Data type:** RNA-seq (FPKM values)
+- **Supplementary file:** `GSE183769_4_genes_fpkm_expression.txt`
+
+---
+
+ 🛠️ Methods
+
+- Processed expression matrix using **Python (pandas, matplotlib)**
+- Identified putative **Z-linked scaffolds** from literature
+- Separated male and female samples
+- Calculated average expression per gene in each group
+- Visualized expression using **boxplots**
+
+---
+
+ 📈 Results
+
+- **Z-linked Genes:**
+  - Female Avg: ~1400
+  - Male Avg: ~1200
+  - 👉 Suggests **partial dosage compensation**
+
+- **Autosomal Genes:**
+  - Female Avg: >2500
+  - Male Avg: >2000
+
+<p align="center">
+  <img src="results/boxplot_z_vs_autosome.png" width="600">
+</p>
+
+---
+
+ 📁 File Structure
+
+

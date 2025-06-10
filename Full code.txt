@@ -1,0 +1,75 @@
+# দরকারি লাইব্রেরি
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# ফাইল ডাউনলোড (http লিংক ইউজ করো)
+!wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE183nnn/GSE183769/suppl/GSE183769_4_genes_fpkm_expression.txt.gz
+
+# আনজিপ
+!gunzip GSE183769_4_genes_fpkm_expression.txt.gz
+
+
+
+# টেক্সট ফাইল লোড করা
+df = pd.read_csv("GSE183769_4_genes_fpkm_expression.txt", sep="\t", index_col=0)
+
+# প্রথম ৫টা gene expression দেখো
+df.head()
+
+
+print(df.columns)
+
+
+
+# Female control & Male control column গুলো
+female_control = ['FPKM.CF_13', 'FPKM.CF_2', 'FPKM.CF_7']
+male_control = ['FPKM.CM_10', 'FPKM.CM_11', 'FPKM.CM_14']
+
+# গড় বের করা
+df['Female_avg'] = df[female_control].mean(axis=1)
+df['Male_avg'] = df[male_control].mean(axis=1)
+
+# Boxplot visualization
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(6,4))
+plt.boxplot([df['Female_avg'], df['Male_avg']], labels=['Female', 'Male'])
+plt.ylabel("Average Gene Expression (FPKM)")
+plt.title("Control Samples: Male vs Female Gene Expression")
+plt.grid(True)
+plt.show()
+
+
+
+df['chr'].value_counts()
+
+
+
+
+df_z = df[df['chr'].isin(z_linked)]
+df_auto = df[~df['chr'].isin(z_linked)]
+
+
+
+female_cols = ['FPKM.CF_13', 'FPKM.CF_2', 'FPKM.CF_7']
+male_cols = ['FPKM.CM_10', 'FPKM.CM_11', 'FPKM.CM_14']
+
+df_z['Female_avg'] = df_z[female_cols].mean(axis=1)
+df_z['Male_avg'] = df_z[male_cols].mean(axis=1)
+
+df_auto['Female_avg'] = df_auto[female_cols].mean(axis=1)
+df_auto['Male_avg'] = df_auto[male_cols].mean(axis=1)
+
+# Plot Z-linked
+plt.figure(figsize=(10, 5))
+plt.subplot(1, 2, 1)
+plt.boxplot([df_z['Female_avg'], df_z['Male_avg']], labels=['Female (Z)', 'Male (Z)'])
+plt.title("Z-linked Gene Expression")
+
+# Plot Autosomal
+plt.subplot(1, 2, 2)
+plt.boxplot([df_auto['Female_avg'], df_auto['Male_avg']], labels=['Female (Auto)', 'Male (Auto)'])
+plt.title("Autosomal Gene Expression")
+plt.tight_layout()
+plt.show()
